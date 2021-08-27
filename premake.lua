@@ -79,8 +79,8 @@ workspace "DDR"
 		forceincludes "stdafx.hpp"
 		
 		prebuildcommands {
-			--"cd ..\\tools\\",
-			--"call version.bat",
+			"cd ..\\tools\\",
+			"call version.bat",
 		}
 
 		postbuildcommands {
