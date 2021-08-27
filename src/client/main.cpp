@@ -29,15 +29,3 @@ namespace ddr
 		game::init();
 	}
 }
-
-bool __stdcall DllMain(::HMODULE, ::DWORD reason, ::LPVOID)
-{
-	if (reason == DLL_PROCESS_ATTACH)
-	{
-		ddr::init();
-
-		return true;
-	}
-
-	return false;
-}

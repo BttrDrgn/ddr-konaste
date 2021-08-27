@@ -66,7 +66,8 @@ workspace "DDR"
 		symbols "on"
 
 	project "client"
-		targetname "ddredux"
+		kind "sharedlib"
+		targetname "dinput8"
 		cppdialect "C++17"
 
 		language "c++"
@@ -83,7 +84,7 @@ workspace "DDR"
 		}
 
 		postbuildcommands {
-			"copy /y \"$(TargetPath)\" \"C:\\Games\\DanceDanceRevolution\\game\\modules\\plugins\\ddredux.asi\"",
+			"copy /y \"$(TargetPath)\" \"C:\\Games\\DanceDanceRevolution\\game\\modules\\\"",
 		}
 
 		dependson {
