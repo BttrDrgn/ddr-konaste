@@ -23,7 +23,7 @@ namespace ddr
 			PRINT_DEBUG("%x", _ReturnAddress());
 			init = true;
 
-			window::hwnd = FindWindowA(NULL, &utils::format::va("PlayRemedy | r%i", VERSION)[0]);
+			window::hwnd = FindWindowA(NULL, &utils::format::va("DanceDanceRevolution", VERSION)[0]);
 			//window::wnd_proc = (WNDPROC)SetWindowLongPtrA(window::hwnd, GWL_WNDPROC, (LONG_PTR)input::wnd_proc_proxy);
 
 			IMGUI_CHECKVERSION();
