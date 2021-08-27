@@ -1,4 +1,4 @@
-#include "dllmain.h"
+#include <proxy.h>
 #include <initguid.h>
 
 #include <main.hpp>
