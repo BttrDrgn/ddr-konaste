@@ -4,6 +4,9 @@
 #include <utils/nt/nt.hpp>
 #include <utils/format/format.hpp>
 
+#include <asmjit/core/jitruntime.h>
+#include <asmjit/x86/x86assembler.h>
+
 namespace utils::hook
 {
 	namespace

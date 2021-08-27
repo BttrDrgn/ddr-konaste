@@ -51,7 +51,7 @@ namespace ddr
 						core->RunCallbacks();
 						std::this_thread::sleep_for(50ms);
 					}
-				});
+				}).detach();
 			}
 		}
 	}

@@ -24,19 +24,30 @@ namespace utils
 		File.close();
 	}
 
-	void file_system::append_file(const char* name, const char* contents)
+	bool file_system::create_directory(const std::string& directory)
 	{
-		if (exists(name) == true)
+		return std::filesystem::create_directories(directory);
+	}
+
+	bool file_system::write_file(const std::string& file, const std::string& data, const bool append)
+	{
+		const auto pos = file.find_last_of("/\\");
+		if (pos != std::string::npos)
 		{
-			std::ofstream File;
-			File.open(name, std::ios_base::app);
-			File << contents;
-			File.close();
+			create_directory(file.substr(0, pos));
 		}
-		else
+
+		std::ofstream stream(
+			file, std::ios::binary | std::ofstream::out | (append ? std::ofstream::app : 0));
+
+		if (stream.is_open())
 		{
-			return;
+			stream.write(data.data(), data.size());
+			stream.close();
+			return true;
 		}
+
+		return false;
 	}
 
 	void file_system::overwrite_file(const char* name, const char* contents)

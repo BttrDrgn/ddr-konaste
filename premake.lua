@@ -15,8 +15,9 @@ workspace "DDR"
 	warnings "extra"
 
 	syslibdirs {
+		"$(DXSDK_DIR)lib\\x64\\",
 		".\\deps\\drpc\\",
-		".\\deps\\minhook\\bin"
+		".\\deps\\minhook\\bin",
 	}
 
 	includedirs {
@@ -25,6 +26,7 @@ workspace "DDR"
 		".\\deps\\drpc\\",
 		".\\deps\\MinHook\\include\\",
 		".\\deps\\asmjit\\src\\",
+		".\\deps\\udis86\\",
 	}
 
 	flags {
@@ -64,7 +66,7 @@ workspace "DDR"
 		symbols "on"
 
 	project "client"
-		targetname "dinput8"
+		targetname "ddredux"
 		cppdialect "C++17"
 
 		language "c++"
@@ -81,21 +83,25 @@ workspace "DDR"
 		}
 
 		postbuildcommands {
-			"copy /y \"$(TargetPath)\" \"C:\\Games\\DanceDanceRevolution\\game\\modules\\\"",
+			"copy /y \"$(TargetPath)\" \"C:\\Games\\DanceDanceRevolution\\game\\modules\\plugins\\ddredux.asi\"",
 		}
 
 		dependson {
 			"ImGui",
 			"Discord",
-			"AsmJIT",
+			"Asmjit",
+			"Udis86",
 		}
 
 		links {
+			"d3d9",
 			"dbghelp",
 			"discord",
 			"..\\deps\\drpc\\discord_game_sdk.dll.lib",
 			"asmjit",
 			"MinHook.x64",
+			"udis86",
+			"imgui",
 		}
 		
 		files {
@@ -107,7 +113,7 @@ workspace "DDR"
 			".\\src\\client\\",
 			".\\src\\shared\\",
 		}
-		
+
 	group "Dependencies"
 		
 	project "ImGui"
@@ -146,21 +152,34 @@ workspace "DDR"
 			"deps\\drpc\\examples",
 		}
 		
-	project "AsmJIT"
-		targetname "asmjit"
-
+	project "Asmjit"
 		language "c++"
-		kind "staticlib"
+		kind "sharedlib"
 		warnings "off"
-
-		defines {
-			"ASMJIT_STATIC",
-		}
 
 		files {
 			"deps\\asmjit\\src\\asmjit\\**.cpp",
+			"deps\\asmjit\\src\\asmjit\\**.h",
 		}
 
 		includedirs {
 			"deps\\asmjit\\src\\asmjit\\",
+		}
+
+	project "Udis86"
+		language "c++"
+		kind "staticlib"
+		warnings "off"
+
+		files {
+			"deps\\udis86\\libudis86\\*.c",
+			"deps\\udis86\\libudis86\\*.h",
+			"deps\\extra\\udis86\\libudis86\\*.c",
+			"deps\\extra\\udis86\\libudis86\\*.h",
+		}
+
+		includedirs {
+			"deps\\udis86\\libudis86\\",
+			"deps\\extras\\udis86\\",
+			"deps\\extras\\udis86\\libudis86\\",
 		}
