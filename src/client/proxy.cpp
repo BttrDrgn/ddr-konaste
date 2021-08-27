@@ -690,3 +690,8 @@ BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID lpReserved)
     }
     return TRUE;
 }
+
+//Ultimate ASI Loader code by 13AG
+//Ripped to use as proxy loader for dinput8, not using any ASI loading code.
+
+//Maybe ill format the code later to be coherent with the rest of the project
