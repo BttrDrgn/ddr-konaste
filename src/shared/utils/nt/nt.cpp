@@ -251,4 +251,10 @@ namespace utils::nt
 	{
 		TerminateProcess(GetCurrentProcess(), code);
 	}
+
+	void error(char* title, char* message)
+	{
+		MessageBoxA(nullptr, message, title, MB_ICONERROR);
+		exit(0);
+	}
 }
