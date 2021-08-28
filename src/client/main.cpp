@@ -1,31 +1,36 @@
 #include <main.hpp>
 
-#include <utils/console/console.hpp>
 #include <utils/exception/exception.hpp>
-#include <utils/hook/hook.hpp>
+#include <utils/nt/nt.hpp>
 
 #include <game/game.hpp>
 
 namespace ddr
 {
-	utils::hook::detour message_box_a_hook;
-
-	int message_box_a(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT uType)
-	{
-		PRINT_DEBUG("\n----------\n%s\n\n%s\n----------", lpCaption, lpText);
-		return message_box_a_hook.invoke<int>(hWnd, lpText, lpCaption, uType);
-	}
-
 	void init()
 	{
-		utils::exception::init("client");
-		utils::console::init();
+		//Check to see if the game is DDR konaste
+		
+		//Check if attached to ddr-konaste.exe and compare version info
+		if (GetModuleHandleA("ddr-konaste.exe") != nullptr && !strcmp("VGP:J:A:A:2021082401", reinterpret_cast<char*>(0x00000001401B56A8)))
+		{
+			utils::exception::init("client");
+			utils::console::init();
 
-		PRINT_INFO("Loading DDRedux client...");
-		PRINT_DEBUG("%s", GetCommandLineA());
+			PRINT_INFO("Loading DDRedux client...");
+			PRINT_DEBUG("%s", GetCommandLineA());
 
-		message_box_a_hook.create(&MessageBoxA, &message_box_a);
+			game::init();
+		}
+		else
+		{
+			utils::nt::error(
+				"DDRedux",
 
-		game::init();
+				"The game that DDRedux has been attached to is not DanceDanceRevolution Konaste Open Beta!!!"
+				"\n\n!!Please install to the correct directory !!"
+				"\n\nEx: C:\\Games\\DanceDanceRevolution\\game\\modules\\"
+			);
+		}
 	}
 }
