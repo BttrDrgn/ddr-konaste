@@ -27,4 +27,7 @@ namespace fs = std::filesystem;
 #include <asmjit/core/jitruntime.h>
 #include <asmjit/x86/x86assembler.h>
 
+#include <utils/console/console.hpp>
+#include <utils/hook/hook.hpp>
+
 long ImGui_ImplWin32_WndProcHandler(::HWND, std::uint32_t, std::uint32_t, long);
