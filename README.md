@@ -1,1 +1,1 @@
-# DDR
+# DDR Konaste Client
