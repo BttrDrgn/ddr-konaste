@@ -89,13 +89,6 @@ workspace "DDR"
 		
 		defines {
 			--Manifest info
-			"rsc_CompanyName=\"PV\"",
-			"rsc_LegalCopyright=\"MIT License\"",
-			"rsc_FileVersion=\"1.0.0.0\"",
-			"rsc_ProductVersion=\"1.0.0.0\"",
-			"rsc_InternalName=\"%{prj.name}\"",
-			"rsc_ProductName=\"%{prj.name}\"",
-			"rsc_OriginalFilename=\"%{prj.name}.dll\"",
 			"rsc_FileDescription=\"DDRedux Client\"",
 			"rsc_UpdateUrl=\"https://github.com/BttrDrgn/ddr\"",
 		}
