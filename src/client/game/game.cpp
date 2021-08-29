@@ -11,7 +11,7 @@ namespace ddr
 		core::init();
 		drpc::init();
 		window::init();
-		//directx::init();
+		directx::init();
 		PRINT_INFO("Game initialized.");
 	}
 }
