@@ -41,18 +41,8 @@ workspace "DDR"
 		"WIN32_LEAN_AND_MEAN",
 		"_CRT_SECURE_NO_WARNINGS",
 		"_SILENCE_ALL_CXX17_DEPRECATION_WARNINGS",
-		
-		--Manifest info
-		"rsc_CompanyName=\"PV\"",
-		"rsc_LegalCopyright=\"MIT License\"",
-		"rsc_FileVersion=\"1.0.0.0\"",
-		"rsc_ProductVersion=\"1.0.0.0\"",
-		"rsc_InternalName=\"%{prj.name}\"",
-		"rsc_ProductName=\"%{prj.name}\"",
-		"rsc_OriginalFilename=\"%{prj.name}.dll\"",
-		"rsc_FileDescription=\"DDRedux Client\"",
-		"rsc_UpdateUrl=\"https://github.com/BttrDrgn/ddr\"",
 	}
+	
 	platforms {
 		"x64",
 	}
@@ -95,6 +85,19 @@ workspace "DDR"
 
 		postbuildcommands {
 			"copy /y \"$(TargetPath)\" \"C:\\Games\\DanceDanceRevolution\\game\\modules\\\"",
+		}
+		
+		defines {
+			--Manifest info
+			"rsc_CompanyName=\"PV\"",
+			"rsc_LegalCopyright=\"MIT License\"",
+			"rsc_FileVersion=\"1.0.0.0\"",
+			"rsc_ProductVersion=\"1.0.0.0\"",
+			"rsc_InternalName=\"%{prj.name}\"",
+			"rsc_ProductName=\"%{prj.name}\"",
+			"rsc_OriginalFilename=\"%{prj.name}.dll\"",
+			"rsc_FileDescription=\"DDRedux Client\"",
+			"rsc_UpdateUrl=\"https://github.com/BttrDrgn/ddr\"",
 		}
 
 		dependson {
