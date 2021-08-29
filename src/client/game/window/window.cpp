@@ -32,6 +32,8 @@ namespace ddr
 		if (!lstrcmpW(lpWindowName, L"DanceDanceRevolution"))
 		{
 			lpWindowName = utils::char_conversion::widen_char(&utils::format::va("DDRedux | r%i", VERSION)[0]);
+			return window::hwnd = create_window_ex_w_hook.invoke<HWND>(dwExStyle, lpClassName, lpWindowName,
+				dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
 		}
 
 		return create_window_ex_w_hook.invoke<HWND>(dwExStyle, lpClassName, lpWindowName,

@@ -130,7 +130,7 @@ namespace utils::hook
 		DWORD old_protect;
 		VirtualProtect(place, sizeof(T), PAGE_EXECUTE_READWRITE, &old_protect);
 
-		*static_cast<T*>(place) = value;
+		*reinterpret_cast<T*>(place) = value;
 
 		VirtualProtect(place, sizeof(T), old_protect, &old_protect);
 		FlushInstructionCache(GetCurrentProcess(), place, sizeof(T));

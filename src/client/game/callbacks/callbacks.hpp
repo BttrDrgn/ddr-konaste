@@ -16,9 +16,9 @@ namespace ddr
 		static void on(const std::initializer_list<callbacks::type>& types, utils::callback<void __cdecl()> callback);
 
 		static void once(utils::callback<void __cdecl()> callback);
+		static void run_basic_callbacks(callbacks::type type);
 
 	private:
-		static void run_basic_callbacks(callbacks::type type);
 
 		static std::mutex mtx_;
 		static std::vector<utils::callback<void __cdecl()>> once_callbacks_;

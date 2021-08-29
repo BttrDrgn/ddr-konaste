@@ -38,7 +38,7 @@ bool __stdcall DllMain(::HMODULE hModule, ::DWORD reason, ::LPVOID)
     {
         hmod = hModule;
         proxy::init();
-        ddr::init();
+        CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ddr::init, 0, 0, 0);
     }
     return TRUE;
 }
