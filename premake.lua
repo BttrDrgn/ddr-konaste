@@ -167,6 +167,7 @@ workspace "DDR"
 		}
 		
 	project "Asmjit"
+		targetname "asmjit"
 		language "c++"
 		kind "sharedlib"
 		warnings "off"
