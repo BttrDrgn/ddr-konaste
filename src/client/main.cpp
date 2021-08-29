@@ -25,7 +25,7 @@ namespace ddr
 			utils::nt::error(
 				"DDRedux",
 
-				"The game that DDRedux has been attached to is not DanceDanceRevolution Konaste Open Beta!!!"
+				"The game that DDRedux has been attached to is not DanceDanceRevolution Konaste Open Alpha!!!"
 				"\n\n!!Please install to the correct directory !!"
 				"\n\nEx: C:\\Games\\DanceDanceRevolution\\game\\modules\\"
 			);
