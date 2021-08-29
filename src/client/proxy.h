@@ -25,6 +25,7 @@ struct shared
         DllGetClassObject = GetProcAddress(dll, "DllGetClassObject");
         DllRegisterServer = GetProcAddress(dll, "DllRegisterServer");
         DllUnregisterServer = GetProcAddress(dll, "DllUnregisterServer");
+        DebugSetMute = GetProcAddress(dll, "DebugSetMute");
     }
 } shared;
 
@@ -43,12 +44,11 @@ struct dinput8_dll
 
 #pragma runtime_checks( "", off )
 
-typedef HRESULT(*fn_DirectInput8Create)(HINSTANCE hinst, DWORD dwVersion, REFIID riidltf, LPVOID * ppvOut, LPUNKNOWN punkOuter);
+typedef HRESULT(*fn_DirectInput8Create)(HINSTANCE hinst, DWORD dwVersion, REFIID riidltf, LPVOID* ppvOut, LPUNKNOWN punkOuter);
 void _DirectInput8Create() { (fn_DirectInput8Create)dinput8.DirectInput8Create(); }
 
 void _DllRegisterServer() { shared.DllRegisterServer(); }
 void _DllUnregisterServer() { shared.DllUnregisterServer(); }
 void _DllCanUnloadNow() { shared.DllCanUnloadNow(); }
 void _DllGetClassObject() { shared.DllGetClassObject(); }
-
 #pragma runtime_checks( "", restore )
