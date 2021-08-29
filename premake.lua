@@ -188,15 +188,10 @@ workspace "DDR"
 		kind "staticlib"
 		warnings "off"
 
-		files {
-			"deps\\udis86\\libudis86\\*.c",
-			"deps\\udis86\\libudis86\\*.h",
-			"deps\\extra\\udis86\\libudis86\\*.c",
-			"deps\\extra\\udis86\\libudis86\\*.h",
-		}
-
-		includedirs {
-			"deps\\udis86\\libudis86\\",
-			"deps\\extras\\udis86\\",
-			"deps\\extras\\udis86\\libudis86\\",
-		}
+	    files {
+            "deps\\udis86\\libudis86\\*.c",
+            "deps\\udis86\\libudis86\\*.h",
+        }
+        includedirs {
+            "deps\\udis86\\libudis86\\",
+        }
