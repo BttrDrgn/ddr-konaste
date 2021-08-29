@@ -170,6 +170,15 @@ workspace "DDR"
 		language "c++"
 		kind "sharedlib"
 		warnings "off"
+		
+--[[	Switch to static building asmjit at some point so we don't have to ship as many dlls
+
+
+		kind "staticlib"
+		defines {
+			"ASMJIT_STATIC",
+		}
+]]--
 
 		files {
 			"deps\\asmjit\\src\\asmjit\\**.cpp",

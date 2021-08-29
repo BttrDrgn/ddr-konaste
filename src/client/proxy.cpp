@@ -42,3 +42,7 @@ bool __stdcall DllMain(::HMODULE hModule, ::DWORD reason, ::LPVOID)
     }
     return TRUE;
 }
+
+
+//Code has mainly been used from https://github.com/ThirteenAG/Ultimate-ASI-Loader/blob/master/source/dllmain.cpp
+//Heavily minimized
