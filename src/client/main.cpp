@@ -9,8 +9,6 @@ namespace ddr
 {
 	void init()
 	{
-		//Check to see if the game is DDR konaste
-		
 		//Check if attached to ddr-konaste.exe and compare version info
 		if (GetModuleHandleA("ddr-konaste.exe") != nullptr && !strcmp("VGP:J:A:A:2021082401", reinterpret_cast<char*>(0x00000001401B56A8)))
 		{
@@ -18,7 +16,7 @@ namespace ddr
 			utils::console::init();
 
 			PRINT_INFO("Loading DDRedux client...");
-			PRINT_DEBUG("%s", GetCommandLineA());
+			SetCurrentDirectoryA("..\\");
 
 			game::init();
 		}
