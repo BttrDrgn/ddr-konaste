@@ -13,6 +13,13 @@ namespace ddr::game
 	{
 		input::on(input::callback_type::on_key_down, [](auto key) -> input::result_type
 		{
+			//F1
+			if (key == 112)
+			{
+				menus::states::shortcuts = !menus::states::shortcuts;
+				return input::result_type::interrupt;
+			}
+
 			//F3
 			if(key == 114)
 			{

@@ -13,6 +13,7 @@ namespace ddr::game
 
 	//States
 	bool menus::states::diag;
+	bool menus::states::shortcuts;
 
 	void menus::init()
 	{
@@ -28,6 +29,7 @@ namespace ddr::game
 
 		//States
 		menus::states::diag = false;
+		menus::states::shortcuts = false;
 
 		//Jump over fps counter
 		utils::hook::jump(0x0000000140013E22, 0x0000000140013E31);
@@ -35,6 +37,7 @@ namespace ddr::game
 
 	void menus::update()
 	{
+		static bool info_toast = false;
 		if (menus::active)
 		{
 			if (menus::states::diag)
@@ -47,13 +50,35 @@ namespace ddr::game
 
 				ImGui::End();
 			}
-		}
 
-		static bool once = false;
-		if (!once)
+			if (menus::states::shortcuts)
+			{
+				ImGui::SetNextWindowPos(ImVec2(1280 * 0.5f, 720 * 0.5f), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+				ImGui::SetNextWindowSize(ImVec2{ 800, 600 });
+				ImGui::Begin("Shortcuts", nullptr, ImGuiWindowFlags_NoDecoration);
+
+				ImGui::Text("Shortcuts");
+				ImGui::NewLine();
+				ImGui::NewLine();
+				ImGui::Text("[F1] - Shortcuts Menu");
+				ImGui::Text("[F3] - Toggle ALL menus");
+				ImGui::Text("[F12] - Toggle Diagnostic view");
+
+				ImGui::End();
+			}
+
+			if (info_toast)
+			{
+				info_toast = false;
+			}
+		}
+		else if (!menus::active)
 		{
-			ImGui::InsertNotification({ ImGuiToastType_Success, 3000, "Welcome to DDRedux!" });
-			once = true;
+			if (!info_toast)
+			{
+				ImGui::InsertNotification({ ImGuiToastType_Info, 3000, "Menus disabled!\nPress F3 to toggle the menus.\nPress F1 for shortcuts." });
+				info_toast = true;
+			}
 		}
 
 		//Imgui-notify render

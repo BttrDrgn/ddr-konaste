@@ -14,6 +14,7 @@ namespace ddr::game
 		{
 		public:
 			static bool diag;
+			static bool shortcuts;
 		};
 
 	private:
