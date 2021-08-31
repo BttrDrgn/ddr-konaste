@@ -19,8 +19,8 @@ namespace fs = std::filesystem;
 #include <winuser.h>
 
 #include <imgui.h>
-#include <examples/imgui_impl_dx9.h>
-#include <examples/imgui_impl_win32.h>
+#include <backends/imgui_impl_dx9.h>
+#include <backends/imgui_impl_win32.h>
 
 #include <shared/utils/version.hpp>
 #include <shared/utils/utils.hpp>

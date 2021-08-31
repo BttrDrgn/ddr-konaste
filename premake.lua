@@ -22,7 +22,8 @@ workspace "DDR"
 
 	includedirs {
 		".\\src\\",
-		"deps\\imgui\\",
+		".\\deps\\imgui\\",
+		".\\deps\\imgui-notify\\",
 		".\\deps\\drpc\\",
 		".\\deps\\MinHook\\include\\",
 		".\\deps\\asmjit\\src\\",
@@ -132,15 +133,15 @@ workspace "DDR"
 		files {
 			"deps\\imgui\\*.h",
 			"deps\\imgui\\*.cpp",
-			"deps\\imgui\\examples\\imgui_impl_dx9.h",
-			"deps\\imgui\\examples\\imgui_impl_dx9.cpp",
-			"deps\\imgui\\examples\\imgui_impl_win32.h",
-			"deps\\imgui\\examples\\imgui_impl_win32.cpp",
+			"deps\\imgui\\backends\\imgui_impl_dx9.h",
+			"deps\\imgui\\backends\\imgui_impl_dx9.cpp",
+			"deps\\imgui\\backends\\imgui_impl_win32.h",
+			"deps\\imgui\\backends\\imgui_impl_win32.cpp",
 		}
 
 		includedirs {
 			"deps\\imgui",
-			"deps\\imgui\\examples",
+			"deps\\imgui\\backends",
 		}
 		
 	project "Discord"
