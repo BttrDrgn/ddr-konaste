@@ -37,12 +37,13 @@ bool __stdcall DllMain(::HMODULE hModule, ::DWORD reason, ::LPVOID)
     if (reason == DLL_PROCESS_ATTACH)
     {
         hmod = hModule;
+        DisableThreadLibraryCalls(hmod);
+
         proxy::init();
-        CreateThread(0, 0, (LPTHREAD_START_ROUTINE)ddr::init, 0, 0, 0);
+        CreateThread(0,0, (LPTHREAD_START_ROUTINE)ddr::init, 0, 0, 0);
     }
     return TRUE;
 }
-
 
 //Code has mainly been used from https://github.com/ThirteenAG/Ultimate-ASI-Loader/blob/master/source/dllmain.cpp
 //Heavily minimized
