@@ -16,6 +16,7 @@ namespace fs = std::filesystem;
 
 #include <Windows.h>
 #include <DbgHelp.h>
+#include <winuser.h>
 
 #include <imgui.h>
 #include <examples/imgui_impl_dx9.h>
