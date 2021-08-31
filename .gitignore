@@ -1,2 +1,2 @@
 build/
-version.txt
+src/shared/utils/version.hpp
