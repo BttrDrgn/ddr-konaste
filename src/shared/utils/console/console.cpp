@@ -4,7 +4,7 @@ namespace utils
 {
 	void console::init()
 	{
-		console::file_ = std::fopen("ddr\\logs\\console.log", "ab");
+		console::file_ = std::fopen("ddredux\\logs\\console.log", "ab");
 
 		::AllocConsole();
 		::SetConsoleTitleA("DDR Console");

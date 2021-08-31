@@ -27,7 +27,7 @@ namespace utils
 	{
 		if (!::IsDebuggerPresent())
 		{
-			const auto handle = ::CreateFileA(&utils::format::va("%s\\ddr\\logs\\%s-%u-%llu.dmp",
+			const auto handle = ::CreateFileA(&utils::format::va("%s\\ddredux\\logs\\%s-%u-%llu.dmp",
 				&std::filesystem::current_path().string()[0], exception::dump_prefix_, VERSION, std::time(nullptr))[0], GENERIC_READ | GENERIC_WRITE,
 				FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
 
