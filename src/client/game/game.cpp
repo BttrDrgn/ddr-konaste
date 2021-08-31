@@ -3,7 +3,7 @@
 #include <game/window/window.hpp>
 #include <game/core/core.hpp>
 #include <game/directx/directx.hpp>
-#include <game/callbacks/callbacks.hpp>
+#include <callbacks/callbacks.hpp>
 
 namespace ddr
 {
@@ -13,11 +13,7 @@ namespace ddr
 		core::init();
 		drpc::init();
 		window::init();
-
-		callbacks::on(callbacks::type::window_create, []()
-		{
-			directx::init();
-		});
+		directx::init();
 
 		PRINT_INFO("Game initialized.");
 	}

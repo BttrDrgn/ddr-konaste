@@ -1,7 +1,7 @@
 #pragma once
 #include "stdafx.hpp"
 
-namespace ddr
+namespace ddr::game
 {
 	class window final
 	{

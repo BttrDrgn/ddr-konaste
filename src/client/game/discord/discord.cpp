@@ -9,7 +9,7 @@
 #include <discord.h>
 
 
-namespace ddr
+namespace ddr::game
 {
 	discord::Core* core{};
 	discord::Activity activity{};

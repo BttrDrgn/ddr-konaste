@@ -2,7 +2,7 @@
 #include <game/core/core.hpp>
 
 
-namespace ddr
+namespace ddr::game
 {
 	void core::init()
 	{

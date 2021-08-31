@@ -2,7 +2,7 @@
 #include "stdafx.hpp"
 #include <discord.h>
 
-namespace ddr
+namespace ddr::game
 {
 	class drpc final
 	{

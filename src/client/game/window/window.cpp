@@ -5,7 +5,7 @@
 #include <game/window/window.hpp>
 
 
-namespace ddr
+namespace ddr::game
 {
 	::HWND window::hwnd = 0;
 	::WNDPROC window::wnd_proc = 0;
