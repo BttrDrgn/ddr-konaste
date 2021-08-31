@@ -7,7 +7,7 @@ namespace utils
 {
 	void file_system::init()
 	{
-		for (const auto path : { "ddr", "ddr\\logs\\",})
+		for (const auto path : { "..\\ddredux", "..\\ddredux\\logs\\",})
 		{
 			if (!file_system::exists(path))
 			{
