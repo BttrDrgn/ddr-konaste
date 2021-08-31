@@ -3,6 +3,7 @@
 #include <game/window/window.hpp>
 #include <game/core/core.hpp>
 #include <game/directx/directx.hpp>
+#include <game/input/input.hpp>
 #include <callbacks/callbacks.hpp>
 
 namespace ddr
@@ -14,6 +15,7 @@ namespace ddr
 		drpc::init();
 		window::init();
 		directx::init();
+		input::init();
 
 		PRINT_INFO("Game initialized.");
 	}
