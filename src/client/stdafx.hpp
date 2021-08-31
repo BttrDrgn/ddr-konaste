@@ -31,4 +31,4 @@ namespace fs = std::filesystem;
 #include <utils/console/console.hpp>
 #include <utils/hook/hook.hpp>
 
-long ImGui_ImplWin32_WndProcHandler(::HWND, std::uint32_t, std::uint32_t, long);
+std::int64_t ImGui_ImplWin32_WndProcHandler(::HWND, std::uint32_t, std::uint64_t, std::int64_t);

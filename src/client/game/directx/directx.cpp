@@ -1,6 +1,9 @@
 #include <game/directx/directx.hpp>
 #include <game/directx/defs.h>
 #include <game/window/window.hpp>
+#include <game/menus/menus.hpp>
+#include <game/input/input.hpp>
+#include <game/core/core.hpp>
 
 #include <utils/format/format.hpp>
 
@@ -32,25 +35,29 @@ namespace ddr::game
 
 			if (window::hwnd == 0)
 			{
+				//Fallback hwnd attempt
 				window::hwnd = FindWindowA(NULL, &utils::format::va("DDRedux | r%i", VERSION)[0]);
 			}
 
-			//window::wnd_proc = (WNDPROC)SetWindowLongPtrA(window::hwnd, GWLP_WNDPROC, (LONG_PTR)input::wnd_proc_hook);
+			window::wnd_proc = (WNDPROC)SetWindowLongPtrA(window::hwnd, GWLP_WNDPROC, (LONG_PTR)input::wnd_proc_hook);
 
 			ImGui_ImplWin32_Init(window::hwnd);
 			ImGui_ImplDX9_Init(pD3D9);
+
+			menus::init();
 		}
 
 		ImGui_ImplDX9_NewFrame();
 		ImGui_ImplWin32_NewFrame();
 		ImGui::NewFrame();
 
-		ImGui::GetIO().MouseDrawCursor = true;
-		ImGui::ShowDemoWindow();
+		menus::update();
 
 		ImGui::EndFrame();
 		ImGui::Render();
 		ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
+
+		core::frame_rate = *reinterpret_cast<float*>(0x1418B616C);
 
 		return end_scene(pD3D9);
 	}
