@@ -3,6 +3,8 @@
 
 #include <utils/format/format.hpp>
 
+#include <imgui_notify.h>
+
 namespace ddr::game
 {
 	bool menus::active;
@@ -18,6 +20,12 @@ namespace ddr::game
 		menus::io = ImGui::GetIO();
 		menus::s = ImGui::GetStyle();
 
+		//Imgui-notify init
+		ImFontConfig font_cfg;
+		font_cfg.FontDataOwnedByAtlas = false;
+		menus::io.Fonts->AddFontFromMemoryTTF((void*)tahoma, sizeof(tahoma), 17.f, &font_cfg);
+		ImGui::MergeIconsWithLatestFont(16.f, false);
+
 		//States
 		menus::states::diag = false;
 
@@ -31,8 +39,8 @@ namespace ddr::game
 		{
 			if (menus::states::diag)
 			{
-				ImGui::SetNextWindowPos(ImVec2{ 0, 695 });
-				ImGui::SetNextWindowSize(ImVec2{ 1280, 15 });
+				ImGui::SetNextWindowPos(ImVec2{ 0, 690 });
+				ImGui::SetNextWindowSize(ImVec2{ 1280, 20 });
 				ImGui::Begin("Diagnostics", nullptr, ImGuiWindowFlags_NoBackground | ImGuiWindowFlags_NoDecoration);
 
 				ImGui::Text("FPS: %4.1f | FT: %5.2f ms", core::frame_rate, (1000.0f / core::frame_rate));
@@ -40,5 +48,19 @@ namespace ddr::game
 				ImGui::End();
 			}
 		}
+
+		static bool once = false;
+		if (!once)
+		{
+			ImGui::InsertNotification({ ImGuiToastType_Success, 3000, "Welcome to DDRedux!" });
+			once = true;
+		}
+
+		//Imgui-notify render
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowRounding, 5.f); // Round borders
+		ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(43.f / 255.f, 43.f / 255.f, 43.f / 255.f, 100.f / 255.f)); // Background color
+		ImGui::RenderNotifications(); // <-- Here we render all notifications
+		ImGui::PopStyleVar(1); // Don't forget to Pop()
+		ImGui::PopStyleColor(1);
 	}
 }
