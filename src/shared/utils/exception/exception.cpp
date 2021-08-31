@@ -38,9 +38,9 @@ namespace utils
 
 
 			MessageBoxA(nullptr, &utils::format::va(
-				"An exception occurred (0x%08X at 0x%p) and Velocity needs to close.\n"
+				"An exception occurred (0x%08X at 0x%p) and DDRedux needs to close.\n"
 				"Please send the generated crash dump to the developers.",
-				ex->ExceptionRecord->ExceptionCode, ex->ExceptionRecord->ExceptionAddress)[0], "DDR", 0);
+				ex->ExceptionRecord->ExceptionCode, ex->ExceptionRecord->ExceptionAddress)[0], "DDRedux", 0);
 
 			exit(0);
 		}
