@@ -15,3 +15,7 @@ This software has been created for research purposes only. Project maintainers a
 [IW6x](https://github.com/XLabsProject/iw6x-client) - Majority of `utils` folder
 
 [Ultimate ASI Loader](https://github.com/ThirteenAG/Ultimate-ASI-Loader) - Proxy loader; heavily modified and minified
+
+[imgui](https://github.com/ocornut/imgui) - Overlay
+
+[imgui-notify](https://github.com/patrickcjk/imgui-notify) - Notification prompts
