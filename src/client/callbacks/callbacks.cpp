@@ -1,6 +1,6 @@
 #include <utils/hook/hook.hpp>
 
-#include <game/callbacks/callbacks.hpp>
+#include <callbacks/callbacks.hpp>
 
 namespace ddr
 {
