@@ -7,5 +7,7 @@ namespace ddr::game
 	{
     public:
         static void init();
+
+		static float frame_rate;
 	};
 }
