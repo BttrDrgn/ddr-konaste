@@ -13,36 +13,37 @@ namespace ddr::game
 	utils::hook::detour create_window_ex_w_hook;
 	utils::hook::detour message_box_a_hook;
 	utils::hook::detour throw_error_dialog_hook;
+	utils::hook::detour set_foreground_hook;
 
-	HWND create_window_ex_w(
-		DWORD     dwExStyle,
-		LPCWSTR   lpClassName,
-		LPCWSTR   lpWindowName,
-		DWORD     dwStyle,
+	::HWND create_window_ex_w(
+		::DWORD     dwExStyle,
+		::LPCWSTR   lpClassName,
+		::LPCWSTR   lpWindowName,
+		::DWORD     dwStyle,
 		int       X,
 		int       Y,
 		int       nWidth,
 		int       nHeight,
-		HWND      hWndParent,
-		HMENU     hMenu,
-		HINSTANCE hInstance,
-		LPVOID    lpParam
+		::HWND      hWndParent,
+		::HMENU     hMenu,
+		::HINSTANCE hInstance,
+		::LPVOID    lpParam
 	)
 	{
 		if (!lstrcmpW(lpWindowName, L"DanceDanceRevolution"))
 		{
 			lpWindowName = utils::char_conversion::widen_char(&utils::format::va("DDRedux | r%i", VERSION)[0]);
-			window::hwnd = create_window_ex_w_hook.invoke<HWND>(dwExStyle, lpClassName, lpWindowName,
+			window::hwnd = create_window_ex_w_hook.invoke<::HWND>(dwExStyle, lpClassName, lpWindowName,
 				dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
 
 			return window::hwnd;
 		}
 
-		return create_window_ex_w_hook.invoke<HWND>(dwExStyle, lpClassName, lpWindowName,
+		return create_window_ex_w_hook.invoke<::HWND>(dwExStyle, lpClassName, lpWindowName,
 			dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
 	}
 
-	int message_box_a(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT uType)
+	int message_box_a(::HWND hWnd, ::LPCSTR lpText, ::LPCSTR lpCaption, ::UINT uType)
 	{
 		PRINT_ERROR("\n----------\n%s\n\n%s\n----------", lpCaption, lpText);
 		return message_box_a_hook.invoke<int>(hWnd, lpText, lpCaption, uType);
@@ -60,10 +61,16 @@ namespace ddr::game
 		return throw_error_dialog_hook.invoke<void>(a1, a2, a3, a4);
 	}
 
+	bool set_foreground(::HWND)
+	{
+		return false;
+	}
+
 	void window::init()
 	{
 		create_window_ex_w_hook.create(&CreateWindowExW, &create_window_ex_w);
 		message_box_a_hook.create(&MessageBoxA, &message_box_a);
-		throw_error_dialog_hook.create(0x140010AE0, throw_error_dialog);
+		throw_error_dialog_hook.create(0x140010AE0, &throw_error_dialog);
+		set_foreground_hook.create(&SetForegroundWindow, &set_foreground);
 	}
 }
