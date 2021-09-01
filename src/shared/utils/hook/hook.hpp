@@ -124,6 +124,9 @@ namespace utils::hook
 
 	void* follow_branch(void* address);
 
+	void write_bytes(void* place, const std::initializer_list<std::uint8_t>& bytes);
+	void write_bytes(const size_t place, const std::initializer_list<std::uint8_t>& bytes);
+
 	template <typename T>
 	static void set(void* place, T value)
 	{

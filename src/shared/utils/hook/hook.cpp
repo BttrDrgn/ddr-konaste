@@ -311,4 +311,20 @@ namespace utils::hook
 
 		return extract<void*>(data + 1);
 	}
+
+	void write_bytes(void* place, const std::initializer_list<std::uint8_t>& bytes)
+	{
+		DWORD old_protect;
+		VirtualProtect(place, bytes.size(), PAGE_EXECUTE_READWRITE, &old_protect);
+
+		std::memcpy(reinterpret_cast<std::uint8_t*>(place), bytes.begin(), bytes.size());
+
+		VirtualProtect(place, bytes.size(), old_protect, &old_protect);
+		FlushInstructionCache(GetCurrentProcess(), place, bytes.size());
+	}
+
+	void write_bytes(const size_t place, const std::initializer_list<std::uint8_t>& bytes)
+	{
+		return write_bytes(reinterpret_cast<void*>(place), bytes);
+	}
 }
