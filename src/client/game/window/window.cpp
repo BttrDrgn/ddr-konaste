@@ -11,10 +11,6 @@ namespace ddr::game
 	::WNDPROC window::wnd_proc = 0;
 
 	utils::hook::detour create_window_ex_w_hook;
-	utils::hook::detour message_box_a_hook;
-	utils::hook::detour throw_error_dialog_hook;
-	utils::hook::detour set_foreground_hook;
-
 	::HWND create_window_ex_w(
 		::DWORD     dwExStyle,
 		::LPCWSTR   lpClassName,
@@ -43,12 +39,14 @@ namespace ddr::game
 			dwStyle, X, Y, nWidth, nHeight, hWndParent, hMenu, hInstance, lpParam);
 	}
 
+	utils::hook::detour message_box_a_hook;
 	int message_box_a(::HWND hWnd, ::LPCSTR lpText, ::LPCSTR lpCaption, ::UINT uType)
 	{
 		PRINT_ERROR("\n----------\n%s\n\n%s\n----------", lpCaption, lpText);
 		return message_box_a_hook.invoke<int>(hWnd, lpText, lpCaption, uType);
 	}
 
+	utils::hook::detour throw_error_dialog_hook;
 	void throw_error_dialog(unsigned int a1, int a2, const char* a3, const char* a4)
 	{
 		PRINT_DEBUG("0x1%x", _ReturnAddress());
@@ -61,6 +59,7 @@ namespace ddr::game
 		return throw_error_dialog_hook.invoke<void>(a1, a2, a3, a4);
 	}
 
+	utils::hook::detour set_foreground_hook;
 	bool set_foreground(::HWND)
 	{
 		return false;
