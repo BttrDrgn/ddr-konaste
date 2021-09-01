@@ -15,8 +15,6 @@ docs/manual/html/
 docs/manual/texinfo/
 docs/manual/udis86.info
 libtool
-libudis86/itab.c
-libudis86/itab.h
 libudis86/libudis86.la
 m4/libtool.m4
 m4/ltoptions.m4
