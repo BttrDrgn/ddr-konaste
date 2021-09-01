@@ -20,21 +20,12 @@ namespace ddr::game
 		//Show Fast/Slow judgement in-game
 		if (true) //Placeholder, tell ImGui to disable/enable it in options.
 		{
-			//rewrite this to write please drgn
-			utils::hook::set(0x1400B331F, 0x48);
-			utils::hook::set(0x1400B331F+1, 0x31);
-			utils::hook::set(0x1400B331F+2, 0xC0); //XOR RAX,RAX
-			utils::hook::set(0x1400B331F+3, 0x48);
-			utils::hook::set(0x1400B331F+4, 0xFF);
-			utils::hook::set(0x1400B331F+5, 0xC0); //INC RAX
+			utils::hook::write_bytes(0x00000001400B331F, { 0x48, 0x31, 0xC0, 0x48, 0xFF, 0xC0 });
 			
 		}
 		else //if the user descides to disable it
 		{
-			utils::hook::set(0x1400B331F, 0x48);
-			utils::hook::set(0x1400B331F+1, 0x31);
-			utils::hook::set(0x1400B331F+2, 0xC0); //XOR RAX,RAX
-			utils::hook::nop(0x1400B3322, 3);
+			utils::hook::write_bytes(0x00000001400B331F, { 0x48, 0x31, 0xC0, 0x90, 0x90, 0x90 });
 		}
 	}
 }
