@@ -104,7 +104,7 @@ namespace ddr::game
 
 				if (ImGui::Button("Reset Settings", ImVec2{ 100,25 }))
 				{
-					//callbacks::run_basic_callbacks(callbacks::type::settings_saved);
+					callbacks::run_basic_callbacks(callbacks::type::settings_reset);
 				}
 
 				ImGui::End();
