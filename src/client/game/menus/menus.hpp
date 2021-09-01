@@ -15,10 +15,7 @@ namespace ddr::game
 		public:
 			static bool diag;
 			static bool shortcuts;
+			static bool settings;
 		};
-
-	private:
-		static ImGuiIO& io;
-		static ImGuiStyle& s;
 	};
 }

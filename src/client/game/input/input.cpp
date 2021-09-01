@@ -21,7 +21,7 @@ namespace ddr::game
 			}
 
 			//F3
-			if(key == 114)
+			if (key == 114)
 			{
 				menus::active = !menus::active;
 				return input::result_type::interrupt;
@@ -31,6 +31,12 @@ namespace ddr::game
 			if (key == 123)
 			{
 				menus::states::diag = !menus::states::diag;
+				return input::result_type::interrupt;
+			}
+
+			if (key == 9)
+			{
+				menus::states::settings = !menus::states::settings;
 				return input::result_type::interrupt;
 			}
 

@@ -3,33 +3,34 @@
 
 #include <utils/format/format.hpp>
 
+#include <callbacks/callbacks.hpp>
+
 #include <imgui_notify.h>
 
 namespace ddr::game
 {
 	bool menus::active;
-	ImGuiIO& menus::io = ImGuiIO();
-	ImGuiStyle& menus::s = ImGuiStyle();
 
 	//States
 	bool menus::states::diag;
 	bool menus::states::shortcuts;
+	bool menus::states::settings;
 
 	void menus::init()
 	{
 		menus::active = true;
-		menus::io = ImGui::GetIO();
-		menus::s = ImGui::GetStyle();
+		ImGuiIO& io = ImGui::GetIO();
 
 		//Imgui-notify init
 		ImFontConfig font_cfg;
 		font_cfg.FontDataOwnedByAtlas = false;
-		menus::io.Fonts->AddFontFromMemoryTTF((void*)tahoma, sizeof(tahoma), 17.f, &font_cfg);
+		io.Fonts->AddFontFromMemoryTTF((void*)tahoma, sizeof(tahoma), 17.f, &font_cfg);
 		ImGui::MergeIconsWithLatestFont(16.f, false);
 
 		//States
 		menus::states::diag = false;
 		menus::states::shortcuts = false;
+		menus::states::settings = false;
 
 		//Jump over fps counter
 		utils::hook::jump(0x0000000140013E22, 0x0000000140013E31);
@@ -40,6 +41,11 @@ namespace ddr::game
 		static bool info_toast = false;
 		if (menus::active)
 		{
+			ImGuiIO& io = ImGui::GetIO();
+			ImGuiStyle& s = ImGui::GetStyle();
+
+			s.WindowBorderSize = { 0.f };
+
 			if (menus::states::diag)
 			{
 				ImGui::SetNextWindowPos(ImVec2{ 0, 690 });
@@ -53,16 +59,53 @@ namespace ddr::game
 
 			if (menus::states::shortcuts)
 			{
-				ImGui::SetNextWindowPos(ImVec2(1280 * 0.5f, 720 * 0.5f), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
-				ImGui::SetNextWindowSize(ImVec2{ 800, 600 });
-				ImGui::Begin("Shortcuts", nullptr, ImGuiWindowFlags_NoDecoration);
+				ImGui::SetNextWindowPos(ImVec2(1160, 720 * 0.5f), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+				ImGui::SetNextWindowSize(ImVec2{ 240, 600 });
+				ImGui::Begin("Shortcuts", &menus::states::shortcuts, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse);
 
-				ImGui::Text("Shortcuts");
-				ImGui::NewLine();
-				ImGui::NewLine();
-				ImGui::Text("[F1] - Shortcuts Menu");
+				ImGui::Text("[Tab] - Settings");
+				ImGui::Text("[F1] - Shortcuts");
 				ImGui::Text("[F3] - Toggle ALL menus");
 				ImGui::Text("[F12] - Toggle Diagnostic view");
+
+				ImGui::End();
+			}
+
+			if (menus::states::settings)
+			{
+				ImGui::SetNextWindowPos(ImVec2(1280 * 0.5f, 720 * 0.5f), ImGuiCond_Always, ImVec2(0.5f, 0.5f));
+				ImGui::SetNextWindowSize(ImVec2{ 800, 600 });
+				ImGui::Begin("Settings", &menus::states::settings, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoCollapse);
+
+				ImGui::Checkbox("Show Judgement", &core::judegment);
+				ImGui::SameLine();
+
+				static bool save = true;
+				ImGui::Checkbox("Save Options", &save);
+				ImGui::SameLine();
+
+				static char name[9];
+				ImGui::PushItemWidth(115);
+				ImGui::InputText("Dancer Name", name, sizeof(name), ImGuiInputTextFlags_CharsUppercase);
+				ImGui::PopItemWidth();
+
+				ImGui::NewLine();
+				ImGui::NewLine();
+				ImGui::NewLine();
+				ImGui::NewLine();
+				ImGui::NewLine();
+
+				if (ImGui::Button("Save Settings", ImVec2{ 100,25 }))
+				{
+					callbacks::run_basic_callbacks(callbacks::type::settings_saved);
+				}
+
+				ImGui::SameLine();
+
+				if (ImGui::Button("Reset Settings", ImVec2{ 100,25 }))
+				{
+					//callbacks::run_basic_callbacks(callbacks::type::settings_saved);
+				}
 
 				ImGui::End();
 			}
