@@ -9,5 +9,6 @@ namespace ddr::game
         static void init();
 
 		static float frame_rate;
+		static bool judegment;
 	};
 }

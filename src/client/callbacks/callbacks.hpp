@@ -8,6 +8,7 @@ namespace ddr
 		enum class type : std::uint32_t
 		{
 			main_loop,
+			settings_saved,
 		};
 		
 		static void init();
