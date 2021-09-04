@@ -27,8 +27,8 @@ namespace utils
 	{
 		if (!::IsDebuggerPresent())
 		{
-			const auto handle = ::CreateFileA(&utils::format::va("%s\\ddredux\\logs\\%s-%u-%llu.dmp",
-				&std::filesystem::current_path().string()[0], exception::dump_prefix_, VERSION, std::time(nullptr))[0], GENERIC_READ | GENERIC_WRITE,
+			const auto handle = ::CreateFileA(&utils::format::va("..\\ddredux\\logs\\%s-%u-%llu.dmp",
+				exception::dump_prefix_, VERSION, std::time(nullptr))[0], GENERIC_READ | GENERIC_WRITE,
 				FILE_SHARE_READ | FILE_SHARE_WRITE, nullptr, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
 
 			auto info = ::MINIDUMP_EXCEPTION_INFORMATION{ ::GetCurrentThreadId(), ex, false };
