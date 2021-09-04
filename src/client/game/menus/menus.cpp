@@ -6,6 +6,7 @@
 #include <callbacks/callbacks.hpp>
 
 #include <imgui_notify.h>
+#include <tahoma.h>
 
 namespace ddr::game
 {

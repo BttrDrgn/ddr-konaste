@@ -23,7 +23,8 @@ workspace "DDR"
 	includedirs {
 		".\\src\\",
 		".\\deps\\imgui\\",
-		".\\deps\\imgui-notify\\",
+		".\\deps\\imgui-notify\\example\\src\\",
+		".\\deps\\extras\\imgui-notify\\",
 		".\\deps\\drpc\\",
 		".\\deps\\MinHook\\include\\",
 		".\\deps\\asmjit\\src\\",
@@ -105,7 +106,7 @@ workspace "DDR"
 			"d3d9",
 			"dbghelp",
 			"discord",
-			"..\\deps\\drpc\\discord_game_sdk.dll.lib",
+			"discord_game_sdk.dll.lib",
 			"asmjit",
 			"MinHook.x64",
 			"udis86",
@@ -192,7 +193,10 @@ workspace "DDR"
 	    files {
             "deps\\udis86\\libudis86\\*.c",
             "deps\\udis86\\libudis86\\*.h",
+			"deps\\extras\\udis86\\itab.h",
+			"deps\\extras\\udis86\\itab.c",
         }
         includedirs {
             "deps\\udis86\\libudis86\\",
+			"deps\\extras\\udis86\\",
         }
