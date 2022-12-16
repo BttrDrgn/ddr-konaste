@@ -18,10 +18,6 @@ namespace fs = std::filesystem;
 #include <DbgHelp.h>
 #include <winuser.h>
 
-#include <imgui.h>
-#include <backends/imgui_impl_dx9.h>
-#include <backends/imgui_impl_win32.h>
-
 #include <shared/utils/version.hpp>
 #include <shared/utils/utils.hpp>
 
@@ -30,5 +26,3 @@ namespace fs = std::filesystem;
 
 #include <utils/console/console.hpp>
 #include <utils/hook/hook.hpp>
-
-std::int64_t ImGui_ImplWin32_WndProcHandler(::HWND, std::uint32_t, std::uint64_t, std::int64_t);

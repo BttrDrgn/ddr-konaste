@@ -1,36 +1,30 @@
 #include <main.hpp>
 
-#include <utils/exception/exception.hpp>
 #include <utils/nt/nt.hpp>
-#include <utils/file_system/file_system.hpp>
 
-#include <game/game.hpp>
+#include <core/core.hpp>
+#include <window/window.hpp>
 
-namespace ddr
+void init()
 {
-	void init()
+	//Check if attached to ddr-konaste.exe and compare version info
+	if (GetModuleHandleA("ddr-konaste.exe") != nullptr && !strcmp("VGP:J:A:A:2022112900", reinterpret_cast<char*>(0x00000001402B5A38)))
 	{
-		//Check if attached to ddr-konaste.exe and compare version info
-		if (GetModuleHandleA("ddr-konaste.exe") != nullptr && !strcmp("VGP:J:A:A:2021082401", reinterpret_cast<char*>(0x00000001401B56A8)))
-		{
-			utils::console::init();
-			utils::file_system::init();
-			utils::exception::init("client");
+		utils::console::init();
 
-			PRINT_INFO("Loading DDRedux client...");
-			SetCurrentDirectoryA("..\\");
+		SetCurrentDirectoryA("..\\");
 
-			game::init();
-		}
-		else
-		{
-			utils::nt::error(
-				"DDRedux",
+		core::init();
+		window::init();
+	}
+	else
+	{
+		utils::nt::error(
+			"DDR",
 
-				"The game that DDRedux has been attached to is not DanceDanceRevolution Konaste Open Alpha!!!"
-				"\n\n!!Please install to the correct directory !!"
-				"\n\nEx: C:\\Games\\DanceDanceRevolution\\game\\modules\\"
-			);
-		}
+			"The game that DDR has been attached to is not DanceDanceRevolution Konaste Version 2022112900!!!"
+			"\n\n!!Please install to the correct directory !!"
+			"\n\nEx: C:\\Games\\DanceDanceRevolution\\game\\modules\\"
+		);
 	}
 }

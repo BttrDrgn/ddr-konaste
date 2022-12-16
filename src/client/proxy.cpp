@@ -40,7 +40,7 @@ bool __stdcall DllMain(::HMODULE hModule, ::DWORD reason, ::LPVOID)
         DisableThreadLibraryCalls(hmod);
 
         proxy::init();
-        CreateThread(0,0, (LPTHREAD_START_ROUTINE)ddr::init, 0, 0, 0);
+        CreateThread(0,0, (LPTHREAD_START_ROUTINE)init, 0, 0, 0);
     }
     return TRUE;
 }

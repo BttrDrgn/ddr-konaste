@@ -1,9 +1,9 @@
 workspace "DDR"
-	location ".\\build\\"
+	location "./build/"
 
-	targetdir "%{wks.location}\\bin\\%{cfg.buildcfg}\\"
-	objdir "%{wks.location}\\obj\\%{cfg.buildcfg}\\%{prj.name}\\"
-	buildlog "%{wks.location}\\obj\\%{cfg.buildcfg}\\%{prj.name}.log"
+	targetdir "%{wks.location}/bin/%{cfg.buildcfg}/"
+	objdir "%{wks.location}/obj/%{cfg.buildcfg}/%{prj.name}/"
+	buildlog "%{wks.location}/obj/%{cfg.buildcfg}/%{prj.name}.log"
 
 	largeaddressaware "on"
 	editandcontinue "off"
@@ -15,20 +15,15 @@ workspace "DDR"
 	warnings "extra"
 
 	syslibdirs {
-		"$(DXSDK_DIR)lib\\x64\\",
-		".\\deps\\drpc\\",
-		".\\deps\\minhook\\bin",
+		"$(DXSDK_DIR)lib/x64/",
+		"./deps/minhook/bin",
 	}
 
 	includedirs {
-		".\\src\\",
-		".\\deps\\imgui\\",
-		".\\deps\\imgui-notify\\example\\src\\",
-		".\\deps\\extras\\imgui-notify\\",
-		".\\deps\\drpc\\",
-		".\\deps\\MinHook\\include\\",
-		".\\deps\\asmjit\\src\\",
-		".\\deps\\udis86\\",
+		"./src/",
+		"./deps/MinHook/include/",
+		"./deps/asmjit/src/",
+		"./deps/udis86/",
 	}
 
 	flags {
@@ -81,12 +76,12 @@ workspace "DDR"
 		forceincludes "stdafx.hpp"
 		
 		prebuildcommands {
-			"cd ..\\tools\\",
+			"cd ../tools/",
 			"call version.bat",
 		}
 
 		postbuildcommands {
-			"copy /y \"$(TargetPath)\" \"C:\\Games\\DanceDanceRevolution\\game\\modules\\\"",
+			"copy /y \"$(TargetPath)\" \"C:/Games/DanceDanceRevolution/game/modules/\"",
 		}
 		
 		defines {
@@ -97,69 +92,28 @@ workspace "DDR"
 
 		dependson {
 			"ImGui",
-			"Discord",
 			"Asmjit",
 			"Udis86",
 		}
 
 		links {
-			"d3d9",
 			"dbghelp",
-			"discord",
-			"discord_game_sdk.dll.lib",
 			"asmjit",
 			"MinHook.x64",
 			"udis86",
-			"imgui",
 		}
 		
 		files {
-			".\\src\\client\\**",
-			".\\src\\shared\\**",
+			"./src/client/**",
+			"./src/shared/**",
 		}
 
 		includedirs {
-			".\\src\\client\\",
-			".\\src\\shared\\",
+			"./src/client/",
+			"./src/shared/",
 		}
 
 	group "Dependencies"
-		
-	project "ImGui"
-		targetname "imgui"
-
-		language "c++"
-		kind "staticlib"
-
-		files {
-			"deps\\imgui\\*.h",
-			"deps\\imgui\\*.cpp",
-			"deps\\imgui\\backends\\imgui_impl_dx9.h",
-			"deps\\imgui\\backends\\imgui_impl_dx9.cpp",
-			"deps\\imgui\\backends\\imgui_impl_win32.h",
-			"deps\\imgui\\backends\\imgui_impl_win32.cpp",
-		}
-
-		includedirs {
-			"deps\\imgui",
-			"deps\\imgui\\backends",
-		}
-		
-	project "Discord"
-		targetname "discord"
-
-		language "c++"
-		kind "staticlib"
-
-		files {
-			"deps\\drpc\\*.h",
-			"deps\\drpc\\*.cpp",
-		}
-
-		includedirs {
-			"deps\\drpc",
-			"deps\\drpc\\examples",
-		}
 		
 	project "Asmjit"
 		targetname "asmjit"
@@ -177,12 +131,12 @@ workspace "DDR"
 ]]--
 
 		files {
-			"deps\\asmjit\\src\\asmjit\\**.cpp",
-			"deps\\asmjit\\src\\asmjit\\**.h",
+			"deps/asmjit/src/asmjit/**.cpp",
+			"deps/asmjit/src/asmjit/**.h",
 		}
 
 		includedirs {
-			"deps\\asmjit\\src\\asmjit\\",
+			"deps/asmjit/src/asmjit/",
 		}
 
 	project "Udis86"
@@ -191,12 +145,12 @@ workspace "DDR"
 		warnings "off"
 
 	    files {
-            "deps\\udis86\\libudis86\\*.c",
-            "deps\\udis86\\libudis86\\*.h",
-			"deps\\extras\\udis86\\itab.h",
-			"deps\\extras\\udis86\\itab.c",
+            "deps/udis86/libudis86/*.c",
+            "deps/udis86/libudis86/*.h",
+			"deps/extras/udis86/itab.h",
+			"deps/extras/udis86/itab.c",
         }
         includedirs {
-            "deps\\udis86\\libudis86\\",
-			"deps\\extras\\udis86\\",
+            "deps/udis86/libudis86/",
+			"deps/extras/udis86/",
         }
